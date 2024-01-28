@@ -1,7 +1,6 @@
 <template>
   <main class="directory-content">
-    <home-nav-bar />
-
+    <HomeNavBar />
   </main>
 
 

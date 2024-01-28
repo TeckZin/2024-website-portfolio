@@ -30,7 +30,6 @@
           <div class="line" id="line-1"></div>
 
 
-
         </div>
 
         <div class="information">
@@ -99,19 +98,11 @@ main{
   border: $borderColor;
 
 
-
-  //align-items: flex-start;
-  //justify-content: center;
-
   section{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    //justify-content: space-evenly;
-    //overflow: auto;
-    //box-sizing: content-box;
-    //align-items: stretch;
-    //width:50%;
+
     .header-title{
       //flex-grow: 2;
       padding: 0;
@@ -243,9 +234,14 @@ main{
 }
 
 @media only screen and (max-width: 850px){
-  .about-content{
+  main{
+    //margin: 0;
     width: 100%;
 
+    .header-title{
+
+
+    }
 
   }
 
@@ -253,8 +249,21 @@ main{
 }
 
 @media only screen and (max-width: 580px){
+  main{
+    height: 100%;
+
+
+  }
   .about-content{
     height: 100%;
+    .title{
+      //transform: scale(0.8);
+      font-size: 20rem;
+      //width: 20%;
+    }
+    .menu-icon{
+      //transform: scale(3);
+    }
 
 
   }
@@ -262,7 +271,7 @@ main{
 
 }
 @media only screen and (max-height: 670px) {
-  .about-content{
+  main{
 
     height: 100%;
   }

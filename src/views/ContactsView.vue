@@ -1,11 +1,24 @@
 <template>
+<main class="contact-content">
 
-  <h1>ContactsView</h1>
-  <h2> Under Construction </h2>
+    <div class="header-content">
+
+
+    </div>
+
+    <ContactsForm class="contact-main" />
+
+</main>
+
+
+
 </template>
 
 <script>
+import ContactsForm from "@/components/ContactsForm.vue";
+
 export default {
+  components: {ContactsForm},
   data() {
     return {}
   },
@@ -14,5 +27,12 @@ export default {
 
 
 <style scoped lang="scss">
+
+
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 </style>

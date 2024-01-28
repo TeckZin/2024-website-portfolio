@@ -76,6 +76,16 @@ export default {
 
 
   }
+  //@media only screen and (max-width: 850px){
+  //  #app{
+  //    //margin: 0;
+  //    width: 100vw;
+  //
+  //
+  //  }
+  //
+  //
+  //}
 
 
 </style>
