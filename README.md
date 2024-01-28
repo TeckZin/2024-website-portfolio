@@ -1,19 +1,28 @@
 # 2024-website-portfolio
 
-## Project setup
-```
-npm install
-```
+## Visit the website
+[My Website](https://www,tztan.net)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## What is it for
+1. A more intresting method instead of a boring plain text resume
+2. A website portflio that will desrcibe who am I
+3. As well as the projects that I have work on
+4. A fun project to take on 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Tools and Technology
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Front-End
+Node.js with Vue.js Frame work 
+With sass instead of css
+
+
+
+### Back-End
+FireBase handling all and webserver
+
+
+## Plans for the future 
+1. Add a database into the server to handle all contact infomaton
+2. Try to make a proper backend to support the server -> using noSQL 
+
+**FINALLY ADD MORE PROJECTS**
