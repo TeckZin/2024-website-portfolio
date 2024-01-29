@@ -1,7 +1,7 @@
 # 2024-website-portfolio
 
 ## Visit the website
-[My Website](https://www,tztan.net)
+[My Website](https://www.tztan.net)
 
 ## What is it for
 1. A more intresting method instead of a boring plain text resume
