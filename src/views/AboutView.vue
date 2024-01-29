@@ -19,8 +19,7 @@
 
         <p class="title">About Me</p>
 
-        <router-link class="directory-link" to="/directory"><img class="menu-icon" src="../assets/images/SocialMediaIcons/menu.svg" alt="menu-icon"></router-link>
-
+        <SelectNavBar />
       </div>
 
       <div class="content-section">
@@ -63,9 +62,10 @@
 
 <script>
 import HomeNavBar from "@/components/HomeNavBar.vue";
+import SelectNavBar from "@/components/SelectNavBar.vue";
 
 export default {
-  components: {HomeNavBar},
+  components: {SelectNavBar, HomeNavBar},
   data() {
     return {}
   },
@@ -120,16 +120,7 @@ main{
         font-size: 4rem;
 
       }
-      .directory-link{
-        width: 10%;
-        .menu-icon{
-          //margin: 0;
-          margin-top: 1rem;
-          width: 90%;
-          height: 90%;
 
-        }
-      }
 
 
     }

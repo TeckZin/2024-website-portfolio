@@ -1,26 +1,26 @@
 <template>
   <main class="main-form-content">
 
-    <form class="form-label">
+    <form class="form-label" @submit.prevent="handleSubmit" >
 
       <div class="name-input">
 
         <label>Name: </label> <br>
-        <input type="text" required v-model="name" >
+        <input type="text" placeholder="John Doe" required v-model="posts.name" >
       </div>
 
 
       <div class="message-input">
 
         <label>Content: </label><br>
-        <textarea rows="4" :cols=" number " required v-model="message"> </textarea>
+        <textarea rows="4" :cols=" number "  placeholder="What your message to me" v-model="posts.message"> </textarea>
 
 
       </div>
 
       <div class="contact-info-input">
 
-        <fieldset>
+        <fieldset >
           <legend>   Contact Method   </legend>
           <div class="number-input">
             <label class="number-info"> Phone Number </label>
@@ -42,7 +42,7 @@
 
       <div class="email-contact-input" v-if="showEmail">
         <label class="email-contact-info" >Contact Email: </label><br>
-        <input type="text" required v-model="emailContact">
+        <input type="text" placeholder="xxxxxx@xxxx.xxx" required v-model="posts.emailContact">
 
       </div>
 
@@ -50,12 +50,16 @@
 
 
         <label class="number-contact-info" >Phone Number: </label><br>
-        <input type="tel" required v-model="phoneNumber">
+        <input type="tel" pattern="+[0-9]2-[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="+xx-xxx-xxx-xxxx" required v-model="posts.phoneNumber">
 
       </div>
 
       <button class="submit-but"> Submit</button>
     </form>
+
+
+
+
 
 
 
@@ -66,18 +70,24 @@
 
 <script>
 import SubmissionSuccess from "@/components/SubmissionSucess.vue";
+import axios from "axios";
 
 export default {
   components: {SubmissionSuccess},
   data() {
     return {
-      name: "",
-      message: "",
-      contactInfo: "",
-      inputType: "",
+      posts: {
+        name: "",
+        message: "",
+        contactInfo: "",
+        inputType: "",
 
-      emailContact: "",
-      phoneNumber: "",
+        emailContact: "",
+        phoneNumber: "",
+
+
+      },
+
 
       showEmail: false,
       showPhoneNumber: false,
@@ -88,6 +98,27 @@ export default {
 
 
     }
+  },methods: {
+    handleSubmit(){
+      if(this.showEmail || this.showPhoneNumber) {
+
+        this.$emit('submitFunc');
+        console.log(this.posts)
+        axios.post('https://web-portfolio-8e44c-default-rtdb.firebaseio.com/posts.json');
+
+
+      } else{
+
+        alert("Pick at least on choice of contact method")
+      }
+
+
+
+
+
+    }
+
+
   },
 
   mounted() {
