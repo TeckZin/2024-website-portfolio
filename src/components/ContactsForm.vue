@@ -61,7 +61,7 @@
 
 
 
-
+<!--    <button @click="testFunc"> test func</button>-->
 
 
   </main>
@@ -70,13 +70,15 @@
 
 <script>
 import SubmissionSuccess from "@/components/SubmissionSucess.vue";
-import axios from "axios";
+
 
 export default {
   components: {SubmissionSuccess},
   data() {
     return {
       posts: {
+
+
         name: "",
         message: "",
         contactInfo: "",
@@ -96,15 +98,34 @@ export default {
 
       width: 0,
 
+      now: null,
+
 
     }
   },methods: {
     handleSubmit(){
       if(this.showEmail || this.showPhoneNumber) {
 
-        this.$emit('submitFunc');
+        // this.$router.push({
+        //   name: "submition-info",
+        //   params: this.posts
+        // });
+        const now = this.getDate();
+
+
+        this.$emit('submitFunc', this.posts, now);
+
+
+
+
+
+
+
+
+
+
+
         console.log(this.posts)
-        axios.post('https://web-portfolio-8e44c-default-rtdb.firebaseio.com/posts.json');
 
 
       } else{
@@ -116,7 +137,21 @@ export default {
 
 
 
+    }, getDate() {
+      const now = new Date();
+      return now.toString();
+
+
     }
+
+
+    // }, testFunc(){
+    //
+    //   const now = new Date();
+    //   return now.toString();
+    //
+    //
+    // }
 
 
   },
