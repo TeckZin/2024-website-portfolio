@@ -4,7 +4,8 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import ProjectsView from '../views/Projects/ProjectsView.vue'
 import ContactsView from '../views/ContactsView.vue'
-import DirectoryView from "../views/DIrectoryView.vue";
+import DirectoryView from "../views/DirectoryView.vue";
+import ProjectInfo from "../views/Projects/ProjectInfo.vue"
 
 const routes = [
 
@@ -41,6 +42,12 @@ const routes = [
     path: '/directory',
     name: 'Directory',
     component: DirectoryView
+
+  }, {
+    path: '/projects/:projectName',
+    name: 'projectInfo',
+    component: ProjectInfo,
+    props: true,
 
   }
   // {

@@ -5,7 +5,16 @@
 
 
 
-    <router-view @submitFunc="handleSubmit"/>
+  <router-view v-slot="{ Component }">
+    <transition name="route" mode="out-in">
+      <component :is="Component"></component>
+    </transition>
+
+
+
+
+  </router-view>
+
 
 
 </template>
@@ -16,7 +25,7 @@ import HomeView from "@/views/HomeView.vue";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase } from "firebase/database";
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -49,16 +58,7 @@ export default {
 
    }
   }, methods: {
-    handleSubmit(posts, now){
-      console.log(posts)
-      console.log(now)
 
-      set(ref(db, 'users/' + now), posts);
-
-
-
-
-    }
 
 
 
@@ -112,6 +112,24 @@ export default {
 
 
   }
+  .route-enter-from{
+    opacity: 0;
+    transform: translateX(-100px);
+
+
+
+  }
+  .route-enter-active{
+    transition: all 1s ease-out;
+
+
+  }
+  .router-leave-to{
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+
   //@media only screen and (max-width: 850px){
   //  #app{
   //    //margin: 0;

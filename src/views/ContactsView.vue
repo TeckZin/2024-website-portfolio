@@ -13,7 +13,7 @@
     <ContactsForm class="contact-main" v-if="!submit" @submitFunc="handleSubmit"/>
 
 
-    <SubmissionSucess v-if="submit"/>
+    <SubmissionSuccess v-if="submit"/>
 </main>
 
 
@@ -25,6 +25,7 @@ import ContactsForm from "@/components/ContactsForm.vue";
 import SelectNavBar from "@/components/SelectNavBar.vue";
 import SubmissionSuccess from "@/components/SubmissionSucess.vue";
 
+
 export default {
   components: {SubmissionSuccess, SelectNavBar, ContactsForm},
   data() {
@@ -33,14 +34,14 @@ export default {
 
     }
   },methods: {
-    handleSubmit(posts, now){
+    handleSubmit(posts, ip, now){
 
 
-      console.log("here")
+      // console.log("here")
       this.submit = true;
       // this.$emit('submitFunc', now, posts)
 
-      this.$emit('submitFunc', posts, now)
+      this.$emit('submitFunc', posts, ip, now)
 
 
 

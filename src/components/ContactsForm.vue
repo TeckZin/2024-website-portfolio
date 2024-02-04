@@ -1,7 +1,7 @@
 <template>
   <main class="main-form-content">
 
-    <form class="form-label" @submit.prevent="handleSubmit" >
+    <form class="form-label" @submit.prevent.stop="handleSubmit" >
 
       <div class="name-input">
 
@@ -24,7 +24,7 @@
           <legend>   Contact Method   </legend>
           <div class="number-input">
             <label class="number-info"> Phone Number </label>
-            <input type="checkbox" @click="showPhoneNumber = !showPhoneNumber" >
+            <input type="checkbox" @click="this.showPhoneNumber = !showPhoneNumber" >
 
           </div>
 
@@ -32,7 +32,7 @@
 
 
             <label class="email-info"> Email </label>
-            <input type="checkbox" @click="showEmail = !showEmail" >
+            <input type="checkbox" @click="this.showEmail = !showEmail" >
 
           </div>
 
@@ -71,6 +71,8 @@
 <script>
 import SubmissionSuccess from "@/components/SubmissionSucess.vue";
 
+import {getDatabase, ref, set, get, child, onValue} from "firebase/database";
+import async from "async";
 
 export default {
   components: {SubmissionSuccess},
@@ -81,11 +83,16 @@ export default {
 
         name: "",
         message: "",
-        contactInfo: "",
-        inputType: "",
+        emailContact: null,
+        phoneNumber: null,
 
-        emailContact: "",
-        phoneNumber: "",
+        time_hour: "",
+        time_s: "",
+        time_min: "",
+
+        date: "",
+
+        userIp: "",
 
 
       },
@@ -100,45 +107,133 @@ export default {
 
       now: null,
 
+      ip: "",
+      allowSubmitFlag: true,
+
+      handleCount: 0,
+
+      allowCount: 0,
+
+      dbRef: ref(getDatabase()),
+
+
+
+
+
 
     }
   },methods: {
+
+    getData(){
+     //
+     //  console.log("run")
+     //
+     //  const db = getDatabase()
+     //
+     //
+     //
+     //  console.log(this.ip)
+     //  const path = "contactsUsers/" + this.ip + "/";
+     //
+     //
+     //
+     // return onValue( ref(db, path ), (snapshot) => {
+     //      // console.log(path)
+     //      // console.log(snapshot.exists())
+     //      // // console.log(snapshot.key)
+     //      // console.log("for each")
+     //      console.log(snapshot.hasChildren());
+     //      snapshot.forEach((user) => {
+     //        // console.log("for each loop")
+     //        //   console.log("key: " + e.key)
+     //          // console.log("value: " +  e.val().toString())
+     //        console.log(user.val())
+     //        return onValue(ref (db, path + user.key), (snapshot2) => {
+     //          let value = snapshot2.val()
+     //          // console.log(value)
+     //          // console.log(value.time_s)
+     //          const temp_time_s = parseInt(value.time_s)
+     //          const temp_time_m = parseInt(value.time_min)
+     //          const temp_time_h = parseInt(value.time_hour)
+     //
+     //          console.log(temp_time_s)
+     //          console.log(temp_time_m)
+     //          console.log(temp_time_h)
+     //
+     //          console.log(this.posts.time_s)
+     //          console.log(this.posts.time_min)
+     //          console.log(this.posts.time_hour)
+     //          if(temp_time_m === parseInt(this.posts.time_min) || temp_time_h === parseInt(this.posts.time_hour)){
+     //             if(Math.abs(temp_time_s - parseInt(this.posts.time_s)) < 20){
+     //               console.log("dont allowed")
+     //               this.allowSubmitFlag = false;
+     //
+     //
+     //             }
+     //
+     //          }
+     //
+     //        })
+     //
+     //
+     //      })
+     //
+     //    console.log(this.allowSubmitFlag)
+     //    console.log("end")
+     //  });
+
+
+
+    },
+
+    // get dated when mounted
     handleSubmit(){
-      if(this.showEmail || this.showPhoneNumber) {
 
-        // this.$router.push({
-        //   name: "submition-info",
-        //   params: this.posts
-        // });
-        const now = this.getDate();
-
-
-        this.$emit('submitFunc', this.posts, now);
-
-
-
-
-
-
-
-
-
-
-
-        console.log(this.posts)
-
-
-      } else{
-
-        alert("Pick at least on choice of contact method")
+      console.log("run")
+      if(this.allowSubmitFlag){
+        const db = getDatabase();
+        set(ref(db, 'contactsUsers/' + this.ip + "/" + this.now), this.posts);
+        this.$emit('submitFunc');
       }
 
+      console.log("end")
 
 
 
 
-    }, getDate() {
+
+
+
+    },
+    allowSubmit() {
+      //
+      // this.allowCount = this.allowCount + 1;
+      // console.log("allow: " + this.allowCount + " handle: " + this.handleCount)
+      // console.log("allow flag: " + this.allowSubmitFlag)
+      //
+      // if(this.allowSubmitFlag){
+      //   console.log("submited")
+      //   const db = getDatabase()
+      //    set(ref(db, 'contactsUsers/' + this.ip + "/" + this.now), this.posts);
+      //   this.$emit('submitFunc');
+      //   console.log('submit')
+      //
+      // }
+      // this.allowSubmitFlag = true;
+
+    },
+
+
+    getDate() {
       const now = new Date();
+      this.posts.time_hour = now.getHours().toString();
+      this.posts.time_s = now.getSeconds().toString();
+      this.posts.time_min = now.getMinutes().toString();
+      this.posts.date = now.toString();
+
+
+
+
       return now.toString();
 
 
@@ -159,6 +254,31 @@ export default {
   mounted() {
 
     this.number = window.innerWidth / 25;
+
+    return fetch('https://api.ipify.org?format=json')
+
+        .then(x => x.json())
+        .then(({ ip }) => {
+
+          console.log("run ip")
+          this.posts.userIp = ip
+          ip = ip.replaceAll(".", "_")
+          this.ip = ip;
+
+
+
+          console.log("run date")
+          this.getDate();
+
+          console.log("run data")
+          this.getData();
+
+          console.log("end of mounted")
+
+        });
+
+
+
 
 
   }
