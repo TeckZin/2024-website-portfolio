@@ -7,6 +7,7 @@ import ContactsView from '../views/ContactsView.vue'
 import DirectoryView from "../views/DirectoryView.vue";
 import ProjectInfo from "../views/Projects/ProjectInfo.vue"
 
+import NotFound from "../views/NotFoundView.vue"
 const routes = [
 
   {
@@ -48,6 +49,13 @@ const routes = [
     name: 'projectInfo',
     component: ProjectInfo,
     props: true,
+
+  }, {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
+
+
 
   }
   // {

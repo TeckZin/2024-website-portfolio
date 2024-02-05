@@ -33,11 +33,9 @@
 
         <div class="information">
           <p class="heading" id="my-self-heading">My Self</p>
-          <p class="text" id="my-self">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab fuga, quaerat? Modi, reprehenderit, temporibus? Culpa dignissimos ea eos, facere facilis iste itaque iure obcaecati pariatur, quos reprehenderit sed tempora voluptatem.</p>
-          <p class="heading">Education</p>
-          <p class="text" id="education">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab fuga, quaerat? Modi, reprehenderit, temporibus? Culpa dignissimos ea eos, facere facilis iste itaque iure obcaecati pariatur, quos reprehenderit sed tempora voluptatem.</p>
+          <p class="text" id="my-self">Navigating the digital landscape at 20 years old, I'm a computer science undergraduate deeply immersed in a diverse array of projects. Proficient in languages such as C, C++, Java, Python, JavaScript, TypeScript, and Go, with an ongoing exploration of Rust, my projects span from dynamic web applications using Vue.js and GSAP to Linux command line scripting. Well-versed in various IDEs like Eclipse, VSCode, JetBrains, and nvim, I've cultivated a multifaceted skill set. This website serves as a showcase for my journey, offering a glimpse into my projects and the evolving technological landscape I explore and contribute to passionately.</p>
           <p class="heading">Projects</p>
-          <p class="text" id="projects">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab fuga, quaerat? Modi, reprehenderit, temporibus? Culpa dignissimos ea eos, facere facilis iste itaque iure obcaecati pariatur, quos reprehenderit sed tempora voluptatem.</p>
+          <p class="text" id="projects">Teck's Project Showcase succinctly captures my technical versatility and innovation. The Vue.js-powered Portfolio Webpage demonstrates adaptability, while the robust School Personal API showcases efficiency in data communication. LAN Blackjack reflects networking and game development skills, and the visually engaging Local Chess project underscores commitment to interactive design. The responsive Todo Page, crafted with Vue.js and Firebase, highlights proficiency in dynamic web applications. Implementation of various data structures in Java showcases a solid grasp of core computer science concepts. These projects collectively depict my expertise in web development, networking, game design, and fundamental computer science, emphasizing dedication to innovative solutions with technical excellence..</p>
 
         </div>
 
@@ -78,7 +76,6 @@ $borderColor: white 0.1rem solid;
 main{
 
   //overflow-y: scroll;
-
   padding: 1rem;
   flex-direction: column;
   display: flex;
@@ -88,14 +85,19 @@ main{
   //height: 60vh;
   width: 50vw;
 }
+.about-content::-webkit-scrollbar {
+  display: none;
 
+}
 .about-content{
   //margin-right: 10rem;
   //box-sizing: content-box;
   //margin: auto;
   //width: 100%;
+  overflow: scroll;
   display: flex;
-  border: $borderColor;
+
+  //border: $borderColor;
 
 
   section{

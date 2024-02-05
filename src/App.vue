@@ -56,6 +56,7 @@ export default {
      showNav:true,
      currentRoute: ""
 
+
    }
   }, methods: {
 

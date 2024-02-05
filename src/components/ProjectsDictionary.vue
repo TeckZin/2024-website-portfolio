@@ -16,7 +16,8 @@
         @enter="enter"
     >
        <li  v-for="(project, index) in projects" :key="project.id" :data-index="index" @mouseenter="changeImage(project.id)">
-        <router-link class="dict-section" :to="{name: 'projectInfo', params: {projectName: project.projectName}}">
+        <router-link class="dict-section" :to="{name: 'projectInfo', params: {  projectName: project.projectName}}">
+
          <p class="title">{{project.title}}</p> <p class="sub-title">{{project.details}}</p>
         </router-link>
        </li>
@@ -83,13 +84,13 @@ export default {
 
       projects: [
 
-        {title: "Port Webpage", details: "Vue Js, Firebase", projectName: "port-webpage", id: 1},
-        {title: "School Personal API", details: "Go, GinSocket", projectName: "school-api", id: 2},
-        {title: "LAN BlackJack", details: "TCP, Python3", projectName: "python3-blackjack", id: 3},
-        {title: "Local Chess", details: "Java FX GUI", projectName: "javafx-chess", id: 4},
-        {title: "Todo Page", details: "Vue Js, Firebase", projectName: "todo-page", id: 5},
-        {title: "DataStructure", details: "Java", projectName: "datastructure-examples", id: 6},
-        {title: "Arduino RFID", details: "arduino rfid reader",projectName: "arduino-rfid", id: 7},
+        {title: "Port Webpage", details: "Vue Js, Firebase", projectName: "port-webpage", titleName: "Arduino RFID1",id: 1},
+        {title: "School Personal API", details: "Go, GinSocket", projectName: "school-api",titleName: "Arduino RFID2", id: 2},
+        {title: "LAN BlackJack", details: "TCP, Python3", projectName: "python3-blackjack",titleName: "Arduino RFID3", id: 3},
+        {title: "Local Chess", details: "Java FX GUI", projectName: "javafx-chess",titleName: "Arduino RFID4", id: 4},
+        {title: "Todo Page", details: "Vue Js, Firebase", projectName: "todo-page",titleName: "Arduino RFID5", id: 5},
+        {title: "DataStructure", details: "Java", projectName: "datastructure-examples",titleName: "Arduino RFID6", id: 6},
+        {title: "Arduino RFID", details: "arduino rfid reader",projectName: "arduino-rfid", titleName: "Arduino RFID7", id: 7},
       ]
 
 

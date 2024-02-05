@@ -42,8 +42,10 @@
         @after-leave="imageAfterLeave"
 
       >
-<!--         <div class="image-box" style="background-image:url({{imageUrl}})"></div>-->
-        <div class="image-box" :style="imageStyle" v-if="showImage"></div>
+<!--         <div class="image-box" style="background-image:url(imageUrlTest)"></div>-->
+<!--        <div class="image-box" :style="imageStyle" v-if="showImage"><img v-bind:src="require(imageUrlTest)" alt="websiteImage"></div>-->
+
+                <div class="image-box" :style="imageStyle" v-if="showImage"><img v-bind:src="require('../.././assets/images/projectDictImages/webportimg.png')" alt="websiteImage"></div>
 
 <!--        <div class="image-box" v-if="showImage"></div>-->
       </transition>
@@ -67,10 +69,11 @@ import gsap from 'gsap'
 export default {
   components: {SelectNavBar, ProjectsDictionary}, data() {
     return {
+      imageUrlTest: '../.././assets/images/projectDictImages/webportimg.png',
       imageColor: "blue",
       imageUrl: "#",
       projectsColor: ["white", "blue", "red", "yellow", "green", "purple", "gray"],
-      projectsImage: ["#1","#2","#3","#4","#5","#6","#7"],
+      projectsImage: ["@/assets/images/projectDictImages/webportimg.png","#","#3","#4","#5","#6","#7"],
       showImage: true,
       count: true,
       stay: false,
@@ -105,11 +108,20 @@ export default {
         } else {
           this.stay = true;
         }
+        this.imageUrl = this.projectsImage[id -1]
+        console.log(this.imageUrl)
         this.imageColor = this.projectsColor[id - 1];
         // console.log(src)
       }
 
 
+
+    },
+
+    getImage(){
+
+
+      return require('../.././assets/images/projectDictImages/webportimg.png')
 
     },
 
@@ -290,6 +302,7 @@ body{
       height: 100%;
       //overflow-wrap: normal;
       .image-box{
+        overflow: hidden;
 
         border-radius: 4rem;
 
@@ -297,6 +310,12 @@ body{
 
         width:100%;
         height: 100%;
+      }
+
+      .image-box img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
     }
